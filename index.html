@@ -136,27 +136,6 @@
             menu.classList.toggle('active');
             overlay.classList.toggle('active');
         }
-
-        function startPing() {
-            const pingDisplay = document.getElementById('ping-display');
-            const serverUrl = '/ping'; // Replace with a valid endpoint
-
-            async function calculatePing() {
-                try {
-                    const startTime = performance.now();
-                    await fetch(serverUrl, { method: 'HEAD', cache: 'no-store' });
-                    const endTime = performance.now();
-                    const ping = Math.round(endTime - startTime);
-                    pingDisplay.textContent = `Ping: ${ping} ms`;
-                } catch (error) {
-                    pingDisplay.textContent = 'Ping: Unavaiable on School Version';
-                }
-            }
-
-            // Update ping every 3 seconds
-            setInterval(calculatePing, 750);
-            calculatePing(); // Initial ping calculation
-        }
     </script>
 </body>
 </html>

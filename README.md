@@ -1,1 +1,1 @@
-# yeah so just run the html and thats it
+# go to the website if you want to use this

@@ -57,8 +57,7 @@
         <button class="btn" onclick="showSeason(2)">Season 2</button>
     </div>
 
-    <!-- please dont take this stuff -->
-    <div id="video-container">
+   <div id="video-container">
         <!-- Season 1 -->
         <div id="season1" class="container active">
             <div class="video"><video class="plyr" id="video1" data-episode="1" controls><source src="https://www.dropbox.com/scl/fi/moht535iwdp5fplsn5202/video1.mp4?rlkey=v4glchvz5sx66wef0js4buhlj&st=hnuw4j13&raw=1" type="video/mp4"></video><h3>Episode 1</h3></div>
@@ -83,6 +82,7 @@
         </div>
     </div>
 
+
     <footer>
         <p>Built with ❤️ by <a href="https://teamnico58.github.io/squidgameweb/" target="_blank">Epik</a></p>
     </footer>
@@ -90,32 +90,21 @@
     <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Initialize Plyr for all videos
             const videos = document.querySelectorAll('.plyr');
             videos.forEach(video => {
                 new Plyr(video);
-
                 const id = video.id;
-
-                // Restore progress
                 const savedTime = localStorage.getItem(id);
                 if (savedTime) {
                     video.currentTime = parseFloat(savedTime);
                 }
-
-                // Save progress
                 video.addEventListener('timeupdate', () => {
                     localStorage.setItem(id, video.currentTime);
                 });
-
-                // Clear progress on video end
                 video.addEventListener('ended', () => {
                     localStorage.removeItem(id);
                 });
             });
-
-            // Start ping calculation
-            startPing();
         });
 
         function toggleTheme() {
@@ -128,34 +117,6 @@
         function showSeason(season) {
             document.querySelectorAll('.container').forEach(c => c.classList.remove('active'));
             document.getElementById('season' + season).classList.add('active');
-        }
-
-        function toggleSettingsMenu() {
-            const menu = document.querySelector('.settings-menu');
-            const overlay = document.querySelector('.settings-overlay');
-            menu.classList.toggle('active');
-            overlay.classList.toggle('active');
-        }
-
-        function startPing() {
-            const pingDisplay = document.getElementById('ping-display');
-            const serverUrl = '/ping'; // Replace with a valid endpoint
-
-            async function calculatePing() {
-                try {
-                    const startTime = performance.now();
-                    await fetch(serverUrl, { method: 'HEAD', cache: 'no-store' });
-                    const endTime = performance.now();
-                    const ping = Math.round(endTime - startTime);
-                    pingDisplay.textContent = `Ping: ${ping} ms`;
-                } catch (error) {
-                    pingDisplay.textContent = 'Ping: Unavailable';
-                }
-            }
-
-            // Update ping every 3 seconds
-            setInterval(calculatePing, 750);
-            calculatePing(); // Initial ping calculation
         }
     </script>
 </body>

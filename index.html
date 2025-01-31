@@ -57,7 +57,7 @@
         <button class="btn" onclick="showSeason(2)">Season 2</button>
     </div>
 
-    <!-- please dont take this stuff -->
+    <!-- The container where the video content will be injected -->
     <div id="video-container">
         <!-- Season 1 -->
         <div id="season1" class="container active">
@@ -84,7 +84,7 @@
     </div>
 
     <footer>
-        <p>Built with ❤️ by <a href="https://teamnico58.github.io/squidgameweb/" target="_blank">Epik</a></p>
+        <p>Built with ❤️ by <a href="https://example.com" target="_blank">Epik</a></p>
     </footer>
 
     <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
@@ -147,9 +147,9 @@
                     await fetch(serverUrl, { method: 'HEAD', cache: 'no-store' });
                     const endTime = performance.now();
                     const ping = Math.round(endTime - startTime);
-                    pingDisplay.textContent = Ping: ${ping} ms;
+                    pingDisplay.textContent = `Ping: ${ping} ms`;
                 } catch (error) {
-                    pingDisplay.textContent = 'Ping: Unavailable';
+                    pingDisplay.textContent = 'Ping: Unavaiable on School Version';
                 }
             }
 
